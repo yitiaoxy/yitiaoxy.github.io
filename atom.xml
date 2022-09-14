@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>一条咸鱼啊</title>
+  
+  <subtitle>月亮与一便士</subtitle>
+  <link href="https://yitiaoxy.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://yitiaoxy.github.io/"/>
+  <updated>2022-09-14T12:24:23.565Z</updated>
+  <id>https://yitiaoxy.github.io/</id>
+  
+  <author>
+    <name>yitiaoxy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你好世界！</title>
+    <link href="https://yitiaoxy.github.io/2022/09/14/w-01/"/>
+    <id>https://yitiaoxy.github.io/2022/09/14/w-01/</id>
+    <published>2022-09-14T11:48:24.000Z</published>
+    <updated>2022-09-14T12:24:23.565Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="《贺新郎·读史》"><a href="#《贺新郎·读史》" class="headerlink" title="《贺新郎·读史》"></a>《贺新郎·读史》</h2><h3 id="毛泽东"><a href="#毛泽东" class="headerlink" title="毛泽东"></a>毛泽东</h3><p>人猿相揖别。只几个石头磨过，小儿时节。铜铁炉中翻火焰，为问何时猜得？不过几千寒热。人世难逢开口笑，上疆场彼此弯弓月。流遍了，郊原血。<br>一篇读罢头飞雪，但记得斑斑点点，几行陈迹。五帝三皇神圣事，骗了无涯过客。有多少风流人物？盗跖庄屩流誉后，更陈王奋起挥黄钺。歌未竟，东方白。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;《贺新郎·读史》&quot;&gt;&lt;a href=&quot;#《贺新郎·读史》&quot; class=&quot;headerlink&quot; title=&quot;《贺新郎·读史》&quot;&gt;&lt;/a&gt;《贺新郎·读史》&lt;/h2&gt;&lt;h3 id=&quot;毛泽东&quot;&gt;&lt;a href=&quot;#毛泽东&quot; class=&quot;headerlink&quot; ti</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>

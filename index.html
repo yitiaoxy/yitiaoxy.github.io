@@ -100,63 +100,15 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>在日常工作中经常使用Git操作。 但是，对新人来说，不习惯Git，操作也很无知。 本文主要针对刚接触Git的新人，了解Git的基本原理，掌握一些常用的命令。</p>
-<h2 id="一-Git工作流程"><a href="#一-Git工作流程" class="headerlink" title="一. Git工作流程"></a>一. Git工作流程</h2><p>上面包含简单和常用的指令，但不要在意这些，请先理解以下四个专有名词。</p>
-<ul>
-<li><p>工作区</p>
-</li>
-<li><p>索引&#x2F;阶段：暂存区</p>
-</li>
-<li><p>存储库：仓库区(或本地仓库)</p>
-</li>
-<li><p>远程：远程仓库</p>
-</li>
-</ul>
-<h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>程序员进行开发变更的地方是你现在看到的，是最新的。</p>
-<p>通常，我们的开发是复制远程仓库中的分支，并根据该分支进行开发。 开发中是工作区的操作。</p>
-<h3 id="暂存区"><a href="#暂存区" class="headerlink" title="暂存区"></a>暂存区</h3><p>. git目录下的索引文件。 暂存区记录git add添加文件的相关信息(文件名、大小、时间)，不保存文件实体，而是用id指示每个文件实体。 可以使用git status显示暂存区的状态。 暂存区标记了当前工作区中哪些内容由git管理。</p>
-<p>yydxs在完成某个需求或功能后，如果需要提交到远程仓库，第一步是通过git add提交到临时存储区，然后通过git进行管理。</p>
-<h3 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h3><p>对象已保存提交的每个版本。 它比工作区和暂存区的内容更旧。</p>
-<p>在git commit之后，将索引目录树同步到本地仓库，以便于从下一步开始通过git push同步本地仓库和远程仓库。</p>
-<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>远程仓库的内容可能与本地仓库同步，也可能不同步，因为本地仓库与多个站点之间存在分布式协作关系，但这是最旧的内容。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>任何对象都将在工作区中诞生和修改。</p>
-<p>所有修改均在进入索引区域后进行版本控制；</p>
-<p>只有把修改提交给当地仓库，该修改才能在仓库留下痕迹；</p>
-<p>可以与合作者共享本地修改，并将其推送至远程仓库进行共享。</p>
-<p>下图更直接地描述了四个区域之间的关系，有些命令可能不太清楚，但没关系。 在下部分会详细介绍。  </p>
-<h2 id="二-常用的Git命令"><a href="#二-常用的Git命令" class="headerlink" title="二.常用的Git命令"></a>二.常用的Git命令</h2><p>网上找了图。 别人整理的图，很好。详细说明一般命令。</p>
-<h3 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h3><p>在掌握具体命令之前，请理解HEAD。</p>
-<p>HEAD，这始终指向当前处置树枝的最新提交点。 当你的位置发生变化或产生新的提交点时，HEAD就会发生变化。</p>
-<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>与add相关的命令很简单，主要是将在工作区中修改的内容提交到暂存区，由git管理。  </p>
-<p>git add .将当前目录中的所有文件添加到转移区域git add dir将指定的目录添加到转移区域。 将指定的文件(包括子目录git add file1)添加到转移区</p>
-<h3 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h3><p>与commit相关的命令也很简单，主要是将登台区的内容提交到本地仓库，并将当前分支的头向后移动一个提交点。  </p>
-<p>git commit -m message将暂存区提交到本地仓库，message代表说明信息git commit file1 -m message将暂存区的指定文件提交到本地仓库的git commit– amend-m</p>
-<h2 id="合作相关的工作流程"><a href="#合作相关的工作流程" class="headerlink" title="合作相关的工作流程"></a>合作相关的工作流程</h2><p>如果涉及到合作，当然会涉及到分歧。 对于分支，有四个操作：展示分支、切换分支、创建分支和删除分支。</p>
-<p>git branch列出所有本地分支git branch -r列出所有远程分支git branch -a列出所有本地分支和远程分支git branch-name新分支</p>
-<p>track <branch><remote-branch>新建一个分支，与指定的远程分支建立追踪关系git checkout <branch-name>切换到指定分支，并更新工作区git branch -d <branch-name>删除分支git push origin –delete <branch-name>删除远程分支<br>关于分支的操作虽然比较多，但都比较简单好记。</p>
-<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>merge命令把不同的分支合并起来。如上图，在实际开放中，我们可能从master分支中切出一个分支，然后进行开发完成需求，中间经过R3,R4,R5的commit记录，最后开发完成需要合入master中，这便用到了merge。</p>
-<p>git fetch <remote>merge之前先拉一下远程仓库最新代码git merge <branch>合并指定分支到当前分支<br>一般在merge之后，会出现conflict，需要针对冲突情况，手动解除冲突。主要是因为两个用户修改了同一文件的同一块区域。如下图所示，需要手动解除。</p>
-<h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p>rebase又称为衍合，是合并的另外一种选择。</p>
-<p>在开始阶段，我们处于new分支上，执行git rebase dev，那么new分支上新的commit都在master分支上重演一遍，最后checkout切换回到new分支。这一点与merge是一样的，合并前后所处的分支并没有改变。git rebase dev，通俗的解释就是new分支想站在dev的肩膀上继续下去。rebase也需要手动解决冲突。</p>
-<h3 id="rebase与merge的区别"><a href="#rebase与merge的区别" class="headerlink" title="rebase与merge的区别"></a>rebase与merge的区别</h3><p>现在我们有这样的两个分支,test和master，提交如下：</p>
-<p>D—E test<br>在master执行git merge test,然后会得到如下结果：</p>
-<p>D——–E<br>在master执行git rebase test，然后得到如下结果：</p>
-<p>A—B—D—E—C’—F’ test, master<br>可以看到，merge操作会生成一个新的节点，之前的提交分开显示。而rebase操作不会生成新的节点，是将两个分支融合成一个线性的提交。</p>
-<p>如果你想要一个干净的，没有merge commit的线性历史树，那么你应该选择git rebase</p>
-<p>如果你想保留完整的历史记录，并且想要避免重写commit history的风险，你应该选择使用git merge</p>
-<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>reset命令把当前分支指向另一个位置，并且相应的变动工作区和暂存区。</p>
-<p>git reset —soft <commit>只改变提交点，暂存区和工作目录的内容都不改变git reset —mixed <commit>改变提交点，同时改变暂存区的内容git reset —hard <commit>暂存区、工作区的内容都会被修改到与提交点完全一致的状态git reset –hard HEAD让工作区回到上次提交时的状态<br>revert</p>
-<p>git revert用一个新提交来消除一个历史提交所做的任何修改。</p>
-<h3 id="revert与reset的区别"><a href="#revert与reset的区别" class="headerlink" title="revert与reset的区别"></a>revert与reset的区别</h3><p>git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。</p>
-<p>在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，减少冲突。但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入，产生很多冲突。关于这一点，不太理解的可以看这篇文章。</p>
-<p>git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。</p>
-<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p>上传本地仓库分支到远程仓库分支，实现同步。</p>
-<p>git push <remote><branch>上传本地指定分支到远程仓库git push <remote> –force强行推送当前分支到远程仓库，即使有冲突git push <remote> –all推送所有分支到远程仓库<br>其他命令</p>
-<p>git status显示有变更的文件git log显示当前分支的版本历史git diff显示暂存区和工作区的差异git diff HEAD显示工作区与当前分支最新commit之间的差异git cherry-pick <commit>选择一个commit，合并进当前分支<br>以上就是关于Git的一些常用命令及详细阐述，相信能对Git有一个初步的认识。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2022/09/30/git/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yitiaoxy.github.io/2022/09/30/git/" data-id="cl8obihpj00002g25fnz287rr" data-title="git基础指令" class="article-share-link">分享</a>
+      <a data-url="https://yitiaoxy.github.io/2022/09/30/git/" data-id="cl8obqedu0001ro259qf1b7ck" data-title="git基础指令" class="article-share-link">分享</a>
       
       
       
@@ -190,12 +142,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="《贺新郎·读史》"><a href="#《贺新郎·读史》" class="headerlink" title="《贺新郎·读史》"></a>《贺新郎·读史》</h2><h3 id="毛泽东"><a href="#毛泽东" class="headerlink" title="毛泽东"></a>毛泽东</h3><p>人猿相揖别。只几个石头磨过，小儿时节。铜铁炉中翻火焰，为问何时猜得？不过几千寒热。人世难逢开口笑，上疆场彼此弯弓月。流遍了，郊原血。<br>一篇读罢头飞雪，但记得斑斑点点，几行陈迹。五帝三皇神圣事，骗了无涯过客。有多少风流人物？盗跖庄屩流誉后，更陈王奋起挥黄钺。歌未竟，东方白。</p>
-
+        <p>人猿相揖别。只几个石头磨过，小儿时节。铜铁炉中翻火焰，为问何时猜得？不过几千寒热。人世难逢开口笑，上疆场彼此弯弓月。流遍了，郊原血。</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/09/14/w-01/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yitiaoxy.github.io/2022/09/14/w-01/" data-id="cl8obihpw00012g2547of5box" data-title="你好世界！" class="article-share-link">分享</a>
+      <a data-url="https://yitiaoxy.github.io/2022/09/14/w-01/" data-id="cl8obqedi0000ro256m1pgdvq" data-title="你好世界！" class="article-share-link">分享</a>
       
       
       
